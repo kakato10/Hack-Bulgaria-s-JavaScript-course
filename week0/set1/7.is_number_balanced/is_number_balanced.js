@@ -4,7 +4,6 @@ var is_number_balanced = function(n) {
   var number_string = n.toString(),
   first_half, second_half,
   half_length = parseInt(number_string.length / 2, 10);
-  console.log(half_length);
   if (number_string.length === 1)
   {
     return true;
