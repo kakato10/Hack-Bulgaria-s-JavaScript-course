@@ -69,6 +69,14 @@ function gameLoop() {
         break;
       }
     }
+
+    var draw = board.every(function(row) {
+      return check_draw(row);
+    });
+    if (draw) {
+      console.log("Noone wins , you idiots!");
+      break;
+    }
     xTurn = !xTurn;
   }
 }
@@ -98,6 +106,11 @@ function check_win(board)
     return false;
   }
 
+}
+function check_draw(arr) {
+  return arr.every(function(element){
+    return element != "*";
+  });
 }
 
 gameLoop();
