@@ -1,6 +1,8 @@
+to_do.txt
 # Logs
 logs
 *.log
+bower_components
 
 # Runtime data
 pids
