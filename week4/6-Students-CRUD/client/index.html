@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hack-Students System</title>
+    <link href='bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet'>
+</head>
+<body>
+
+    <div id='start-here' class='container'>
+        <p class='lead'>Our awesome students system!</p>
+        <div>
+            <div>
+                <div class="col-md-2">
+                    <div class="row">
+                        <button id="create-btn" class='btn'>Create student</button>
+                        <button id="update-btn" class='btn'>Update student</button>
+                        <button id="delete-btn" class='btn'>Delete student</button>
+                    </div>
+                    <div class='row'>
+                         Enter students faculty number
+                        <input id='FN-box'>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        Enter name attended
+                        <input id='name-box'>
+                        <p></p>
+                    </div>
+                    <div class="row">
+                        Enter courses attended     (When you're entering the courses please split the with ',')
+                        <input id='courses-box'>
+                        <p></p>
+                    </div>
+                </div>
+                <div class='col-md-5'>
+                    <p></p>
+                </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Faculty Number</th>
+                        <th>Name</th>
+                        <th>Courses</th>
+                    </tr>
+                </thead>
+                <tbody id="table-container">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+<script id="table-template" type="text/x-handlebars-template">
+        <tr id="{{FN}}">
+            <td>{{FN}}</td>
+            <td>{{name}}</td>
+            <td>{{{courses}}}</td>
+        </tr>
+</script>
+<script src='bower_components/jquery/dist/jquery.js'></script>
+<script src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='bower_components/handlebars/handlebars.min.js'></script>
+<script type='text/javascript' src='app.js'></script>
+</body>
+</html>
