@@ -53,28 +53,39 @@
 <script id="table-template" type="text/x-handlebars-template">
         <tr id="{{FN}}">
             <td>{{FN}}</td>
-            <td>{{name}}</td>
-            <td>{{{courses}}}</td>
+            <td class="name">{{name}}</td>
+            <td class="courses">{{{courses}}}</td>
             <td>{{{update-button}}}</td>
             <td>{{{delete-button}}}</td>
         </tr>
 </script>
 <script id="course-paragraph-template" type="text/x-handlebars-template"><p>{{info}}</p>
 </script>
-<script id = "delete-button" type="text/x-handlebars-template">
+<script class = "delete-button" type="text/x-handlebars-template">
 	<button class="btn delete-btn">Delete student</button>
 </script>
-<script id = "update-button" type="text/x-handlebars-template">
+<script class = "update-button" type="text/x-handlebars-template">
 	<button class="btn update-btn">Update student</button>
 </script>
-<script id = "ok-btn-td" type="text/x-handlebars-template">
+<script class = "ok-btn-td" type="text/x-handlebars-template">
 	<td class="ok-column">
 		<button class="ok">OK</button>
+	</td>
+</script>
+<script id="courses-input" type="text/x-handlebars-template">
+	<td class="courses">
+		<input class='update-courses-box'>
+	</td>
+</script>
+<script id="name-input" type="text/x-handlebars-template">
+	<td class="name">
+		<input class='update-name-box'>
 	</td>
 </script>
 <script src='bower_components/jquery/dist/jquery.js'></script>
 <script src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
 <script src='bower_components/handlebars/handlebars.min.js'></script>
 <script type='text/javascript' src='app.js'></script>
+
 </body>
 </html>
