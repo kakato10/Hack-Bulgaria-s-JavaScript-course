@@ -30,6 +30,8 @@ $(document).ready(function() {
       'FN' : item.facultyNumber,
       'name' : item.name,
       'courses' : studentCourses,
+      'delete-button' : '<button class="btn delete-btn">Delete student</button>',
+      'update-button' : '<button class="btn update-btn">Update student</button>'
     };
     var tableHtml = tableTemplate(studentToDisplay);
     allRows = allRows + tableHtml;
@@ -56,7 +58,30 @@ $(document).ready(function() {
       });
     });
   });
-  $("#update-btn").on("click", function(){
+  $(document).on("click", ".update-btn", function(){
+    var fn = $(this).parent().parent().attr("id");
+    $.ajax({
+      //start from here
+      url: "http://localhost:3030/student/" + fn,
+      type: "GET",
+      contentType: "application/json"
+    }).done(function(data) {
+      $('.ok-column').remove();
+      var student = data;
+      var courses = [];
+      student.courses.forEach(function(course) {
+        courses = courses.concat(course);
+      });
+      courses = courses.join(',');
+        $("#name-box").val(student.name);
+      $("#courses-box").val(courses);
+      $("#FN-box").val(student.facultyNumber);
+      $("#" + student.facultyNumber).append('<td class="ok-column"><button class="ok">OK</button></td>');
+    });
+
+      //here should i still writing !!!!!!!!!!!!!!!!!!!!!!!!!!
+  });
+  $(document).on("click", ".ok", function(){
     $.ajax({
       url: "http://localhost:3030/student",
       type: "POST",
@@ -68,13 +93,14 @@ $(document).ready(function() {
       $.getJSON('http://localhost:3030/students', function(students, textStatus) {
         studentsDb = students;
         $('#table-container').append(generateTable(students));
+        $('.ok-column').remove();
       });
     });
   });
-  $("#delete-btn").on("click", function(){
-    console.log("http://localhost:3030/student/" + $("#FN-box").val());
+  $(document).on("click", ".delete-btn", function(){
+    var fn = $(this).parent().parent().attr("data-FN");
     $.ajax({
-      url: "http://localhost:3030/student/" + $("#FN-box").val(),
+      url: "http://localhost:3030/student/" + fn ,
       type: "DELETE",
       dataType: "json"
     }).done(function(data){
@@ -85,6 +111,4 @@ $(document).ready(function() {
       });
     });
   });
-
-
 });
