@@ -54,7 +54,6 @@ $(document).ready(function() {
       if (student === undefined){
         $('#table-container').append(generateTable(students));
       } else {
-        console.log(generateTable([student]))
         $("#" + student.facultyNumber).replaceWith(generateTable([student]));
       }
     });
@@ -79,9 +78,6 @@ $(document).ready(function() {
       var tableHtml = tableTemplate(studentToDisplay);
       allRows = allRows + tableHtml;
     });
-    if(items.length === 1) {
-      console.log(allRows);
-    }
   return allRows;
   };
 
@@ -112,7 +108,6 @@ $(document).ready(function() {
         courses = courses.concat(course);
       });
       courses = courses.join(',');
-      console.log($elementToChange.children('.name'))
       $elementToChange.children('.name').replaceWith(generateInputNameField());
       $elementToChange.children('.courses').replaceWith(generateInputCoursesField());
       $elementToChange.children('.name').children(".update-name-box").val(student.name);
@@ -135,7 +130,6 @@ $(document).ready(function() {
       contentType: "application/json"
     }).done(function(data){
         var student = data
-        console.log(student);
         getDataBase(student)
       });
     });
