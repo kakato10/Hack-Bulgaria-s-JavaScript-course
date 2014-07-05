@@ -20,7 +20,7 @@
                         <p></p>
                     </div>
                     <div class="row">
-                        Enter name attended
+                        Enter name
                         <input id='name-box'>
                         <p></p>
                     </div>
@@ -58,6 +58,19 @@
             <td>{{{update-button}}}</td>
             <td>{{{delete-button}}}</td>
         </tr>
+</script>
+<script id="course-paragraph-template" type="text/x-handlebars-template"><p>{{info}}</p>
+</script>
+<script id = "delete-button" type="text/x-handlebars-template">
+	<button class="btn delete-btn">Delete student</button>
+</script>
+<script id = "update-button" type="text/x-handlebars-template">
+	<button class="btn update-btn">Update student</button>
+</script>
+<script id = "ok-btn-td" type="text/x-handlebars-template">
+	<td class="ok-column">
+		<button class="ok">OK</button>
+	</td>
 </script>
 <script src='bower_components/jquery/dist/jquery.js'></script>
 <script src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>

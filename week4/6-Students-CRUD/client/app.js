@@ -4,8 +4,22 @@ $(document).ready(function() {
   var studentsDb = [];
 
   var generateCourseParagraph = function(course) {
-    return '<p>' + course + '</p>';
+    var courseParagraphSource = $("#course-paragraph-template").html();
+    var courseParagraphTemplate = Handlebars.compile(courseParagraphSource);
+    return courseParagraphTemplate({"info":course});
   };
+
+  var generateDeleteButton = function() {
+    return $("#delete-button").html();
+  };
+
+  var generateUpdateButton = function() {
+    return $("#update-button").html();
+  };
+
+  var generateOkButton = function() {
+    return $("#ok-btn-td").html();
+  }
 
   var clearBox = function (elementID) {
       $("#" + elementID).empty();
@@ -17,6 +31,13 @@ $(document).ready(function() {
       "courses" : $("#courses-box").val().split(',')
     };
   }
+  var getDataBase = function() {
+    $.getJSON('http://localhost:3030/students', function(students, textStatus) {
+      studentsDb = students;
+      $('#table-container').append(generateTable(students));
+    });
+  };
+
   var generateTable = function(items) {
     var allRows = '';
     items.forEach(function(item){
@@ -30,8 +51,8 @@ $(document).ready(function() {
       'FN' : item.facultyNumber,
       'name' : item.name,
       'courses' : studentCourses,
-      'delete-button' : '<button class="btn delete-btn">Delete student</button>',
-      'update-button' : '<button class="btn update-btn">Update student</button>'
+      'delete-button' : generateDeleteButton(),
+      'update-button' : generateUpdateButton()
     };
     var tableHtml = tableTemplate(studentToDisplay);
     allRows = allRows + tableHtml;
@@ -39,10 +60,7 @@ $(document).ready(function() {
   return allRows;
   };
 
-  $.getJSON('http://localhost:3030/students', function(students, textStatus) {
-      studentsDb = students;
-      $('#table-container').append(generateTable(students));
-  });
+  getDataBase();
   $("#create-btn").on("click", function(){
     $.ajax({
       url: "http://localhost:3030/student",
@@ -52,16 +70,12 @@ $(document).ready(function() {
       data: JSON.stringify(getData())
     }).done(function(){
       $("#table-container").empty();
-      $.getJSON('http://localhost:3030/students', function(students, textStatus) {
-        studentsDb = students;
-        $('#table-container').append(generateTable(students));
-      });
+      getDataBase();
     });
   });
   $(document).on("click", ".update-btn", function(){
     var fn = $(this).parent().parent().attr("id");
     $.ajax({
-      //start from here
       url: "http://localhost:3030/student/" + fn,
       type: "GET",
       contentType: "application/json"
@@ -76,10 +90,8 @@ $(document).ready(function() {
         $("#name-box").val(student.name);
       $("#courses-box").val(courses);
       $("#FN-box").val(student.facultyNumber);
-      $("#" + student.facultyNumber).append('<td class="ok-column"><button class="ok">OK</button></td>');
+      $("#" + student.facultyNumber).append(generateOkButton());
     });
-
-      //here should i still writing !!!!!!!!!!!!!!!!!!!!!!!!!!
   });
   $(document).on("click", ".ok", function(){
     $.ajax({
@@ -90,25 +102,19 @@ $(document).ready(function() {
       data: JSON.stringify(getData())
     }).done(function(data){
       $("#table-container").empty();
-      $.getJSON('http://localhost:3030/students', function(students, textStatus) {
-        studentsDb = students;
-        $('#table-container').append(generateTable(students));
-        $('.ok-column').remove();
-      });
+      getDataBase();
+      $('.ok-column').remove();
     });
   });
   $(document).on("click", ".delete-btn", function(){
-    var fn = $(this).parent().parent().attr("data-FN");
+    var fn = $(this).parent().parent().data("FN");
     $.ajax({
       url: "http://localhost:3030/student/" + fn ,
       type: "DELETE",
       dataType: "json"
     }).done(function(data){
       $("#table-container").empty();
-      $.getJSON('http://localhost:3030/students', function(students, textStatus) {
-        studentsDb = students;
-        $('#table-container').append(generateTable(students));
-      });
+      getDataBase();
     });
   });
 });
