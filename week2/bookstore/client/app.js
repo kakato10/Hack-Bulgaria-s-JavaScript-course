@@ -4,17 +4,23 @@ $(document).ready(function(){
   var booksDb = [];
   var booksInCart = {};
   var pagesInCart = 0;
+
   var generateBook = function (aim, book) {
     var bookSource;
     if (aim === "store") {
       bookSource = $("#book-for-store").html();
-    } else if (aim === "cart") {
+      generateModal(book);
+      } else if (aim === "cart") {
       bookSource = $("#book-for-cart").html();
     }
     var bookTemplate = Handlebars.compile(bookSource);
     return bookTemplate(book);
   };
-
+  var generateModal = function(book) {
+    var modalSource = $("#modal").html();
+    var modalTemplate = Handlebars.compile(modalSource);
+    $("#modals-container").append(modalTemplate(book));
+  }
   var findBook = function(isbn) {
     var searchedBook;
     booksDb.forEach(function(book){
@@ -45,14 +51,12 @@ $(document).ready(function(){
     var newPagesCounter = pagesCounterTemplate({
       "pages" : pagesInCart
     })
-    console.log(newPagesCounter);
     $("#pages-counter").replaceWith(newPagesCounter);
   };
 
   var addToCart = function(isbn, usersAmount){
     var amount = usersAmount || 1;
     var stringedIsbn = isbn.toString();
-    console.log(booksInCart);
     if(!(stringedIsbn in booksInCart)) {
       booksInCart[stringedIsbn] = findBook(isbn);
       booksInCart[stringedIsbn].amount = amount;
@@ -71,7 +75,6 @@ $(document).ready(function(){
     if (amount > booksInCart[stringedIsbn].amount){
       alert("You can't remove such an amount from that book");
     } else {
-      console.log(amount);
       (booksInCart[stringedIsbn].amount = booksInCart[stringedIsbn].amount - amount)
       pagesInCart = pagesInCart - booksInCart[stringedIsbn].num_pages * amount;
       changePagesCounter();
@@ -81,9 +84,8 @@ $(document).ready(function(){
       } else {
         $("#"+isbn+'-cart').children(".amount").replaceWith(generateAmountParagraph(booksInCart[stringedIsbn].amount));
       }
-
     }
-  }
+  };
 
   $.getJSON('http://localhost:3000/books', function(books, textStatus) {
     booksDb = books;
@@ -100,10 +102,15 @@ $(document).ready(function(){
       addToCart(bookIsbn, amount);
     }
   });
+
+  $(document).on("click", ".read", function(){
+    var targetedModal = $(this).data("target");
+    $(targetedModal).modal("show");
+  });
+
   $(document).on("click", ".remove", function(){
     var bookIsbn = $(this).parent().parent().data("isbn");
     var amount = parseInt($("#" + bookIsbn + "-cart").children().children(".amount-to-remove").val(),10);
-    console.log(amount);
     if (isNaN(amount) || amount === 0){
       alert("You didn't asigned a correct value");
     } else {

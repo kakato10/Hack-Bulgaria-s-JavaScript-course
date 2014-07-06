@@ -10,6 +10,8 @@
         <h1>HackBulgaria's Bookstore</h1>
         <div class="row" id="book-store-container">
         </div>
+        <div id="modals-container">
+        </div>
         <div class="row">
             <div class="col-xs-12">
                 <h1>Shopping cart:</h1>
@@ -29,7 +31,7 @@
                 <img src="{{image_url}}">
                 <p>Averege rating: {{average_rating}}</p>
                 <p>{{isbn}}</p>
-                <button class="btn btn-info">Read description</button>
+                <button class="btn btn-info read" data-toggle="modal" data-target=".{{isbn}}-modal">Read description</button>
                 <p>Amount:
                     <input class="amount-to-enter" type="number" >
                 <button value="Add to cart" class="btn-success to-cart"> Add to cart </button>
@@ -58,6 +60,24 @@
         <div class="row" id="pages-counter">
             <p>Total number of pages in cart: {{pages}}</p>
             </div>
+    </script>
+    <script id="modal" type="text/x-handlebars-template">
+<div class="modal fade {{isbn}}-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+      </div>
+      <div class="modal-body">
+        {{description}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
     </script>
     <script src="./app.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
