@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bookstore</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>HackBulgaria's Bookstore</h1>
+        <div class="row" id="book-store-container">
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Shopping cart:</h1>
+                <div id="books-cart-container">
+                        <div id="pages-counter" class="row">
+            <p>Total number of pages in cart: 0</p>
+            </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script id="book-for-store" type="text/x-handlebars-template">
+                <div id="{{isbn}}-store" class="col-md-4" data-isbn="{{isbn}}">
+                <h3>{{title}}</h3>
+                <img src="{{image_url}}">
+                <p>Averege rating: {{average_rating}}</p>
+                <p>{{isbn}}</p>
+                <button class="btn btn-info">Read description</button>
+                <p>Amount:
+                    <input class="amount-to-enter" type="number" >
+                <button value="Add to cart" class="btn-success to-cart"> Add to cart </button>
+                </p> 
+                </form>
+                </div>
+    </script>
+    <script id="book-for-cart" type="text/x-handlebars-template">
+            <div id="{{isbn}}-cart" class="col-xs-5" data-isbn="{{isbn}}">
+            <h3>{{title}}</h3>
+            <img src="{{image_url}}">
+            <p>Averege rating: {{average_rating}}</p>
+            <p>{{isbn}}</p>
+            <p>Amount:
+                    <input class="amount-to-remove" type="number" >
+                <button class="btn btn-warning remove">Remove from cart</button>
+
+                </p> 
+            
+            </div>
+    </script>
+    <script id="amount-template" type="text/x-handlebars-template">
+        <p class="amount">Amount: {{amount}}</p>
+    </script>
+    <script id="pages-container" type="text/x-handlebars-template">
+        <div class="row" id="pages-counter">
+            <p>Total number of pages in cart: {{pages}}</p>
+            </div>
+    </script>
+    <script src="./app.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src='bower_components/handlebars/handlebars.min.js'></script>
+
+</body>
+</html>
