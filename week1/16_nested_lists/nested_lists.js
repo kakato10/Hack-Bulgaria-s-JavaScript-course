@@ -1,36 +1,29 @@
 'use strict';
 
-var ol = function(item) {
+var ol = function(items) {
   var result = '<ol>';
-  item.forEach(function(a) {
-    if (Object.keys(a)[1] === 'children') {
-      result = result + '<li>' + a[Object.keys(a)[0]] + '<ol>';
-      a.children.forEach(function(b) {
-        result = result + '<li>' + b[Object.keys(b)[0]] + '</li>';
-      });
-      result = result + '</ol>' + '</li>';
+  items.forEach(function(item) {
+    if ("children" in item) {
+      result = result + "<li>"+ item.label + ol(item.children) + "</li>";
     } else {
-      result = result + '<li>' + a[Object.keys(a)[0]] + '</li>';}
-
+    result = result + '<li>' + item.label + '</li>';
+    }
   });
   return result + '</ol>';
 };
 
-var ul = function(item) {
-   var result = '<ul>';
-  item.forEach(function(a) {
-    if (Object.keys(a)[1] === 'children') {
-      result = result + '<li>' + a[Object.keys(a)[0]] + '<ul>';
-      a.children.forEach(function(b) {
-        result = result + '<li>' + b[Object.keys(b)[0]] + '</li>';
-      });
-      result = result + '</ul>' + '</li>';
+var ul = function(items) {
+  var result = '<ul>';
+  items.forEach(function(item) {
+    if ("children" in item){
+      result = result + "<li>" + item.label +ul(item.children) + "</li>";
     } else {
-      result = result + '<li>' + a[Object.keys(a)[0]] + '</li>';}
-
+      result = result + '<li>' + item.label + '</li>';
+    }
   });
   return result + '</ul>';
 };
 
 exports.ul = ul;
 exports.ol = ol;
+

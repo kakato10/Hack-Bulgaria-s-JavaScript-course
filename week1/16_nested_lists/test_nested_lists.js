@@ -6,13 +6,13 @@ var ol = require('./nested_lists').ol;
 
 exports.testol = function(test) {
   var result = '<ol><li>Item 1</li><li>Item 2<ol><li>Level 2 of Item 2</li><li>Another level 2</li></ol></li></ol>';
-  var items = [{ 'label' : 'Item 1'},
-             { 'label' : 'Item 2', 'children' : [
+  var items = [{ "label" : "Item 1"},
+             { "label" : "Item 2", "children" : [
                 {
-                    'label' : 'Level 2 of Item 2'
+                    "label" : "Level 2 of Item 2"
                 },
                 {
-                    'label' : 'Another level 2'
+                    "label" : "Another level 2"
                 }
              ]}];
 
