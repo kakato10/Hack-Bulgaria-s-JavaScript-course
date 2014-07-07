@@ -1,6 +1,6 @@
 "use strict";
 
-var beerAndFries = require("./beerAndFries.js").beerAndFries;
+var beerAndFries = require("./beerAndFries").beerAndFries;
 
 
 exports.testBeerAndFriesScenario1 = function(test) {

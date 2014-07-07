@@ -8,14 +8,14 @@ $(document).ready(function() {
     window.clearInterval(intervalID);
     timeRunning.minutes = 0;
     timeRunning.seconds = 0;
-    intervalID = window.setInterval(function() {countUp(time);}, 500);
+    intervalID = window.setInterval(function() {countUp(time);}, 1000);
   });
   $('#count-down').on('click', function(){
     getUsersTime();
     window.clearInterval(intervalID);
     timeRunning.minutes = time.minutes;
     timeRunning.seconds = time.seconds;
-    intervalID = window.setInterval(function() {countDown(time);}, 500);
+    intervalID = window.setInterval(function() {countDown(time);}, 1000);
   });
   $('#reset').on('click', function(){
     window.clearInterval(intervalID);
