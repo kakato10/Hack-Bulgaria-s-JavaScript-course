@@ -1,0 +1,17 @@
+.pizzeria {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+.address-asker {
+    display: block;
+    margin-left: auto;
+    margin-right: auto }
+
+.pizza-img {
+	width: 200px; 
+	height: auto
+}
+
+.header{
+	text-align: center
+}

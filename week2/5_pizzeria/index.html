@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pizzeria</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<h1 class="header">WELCOME TO PIZZERIA MERZANO</h1>
+<img class="pizzeria" src="http://www.pizzeria-marzano.com/images/hd_mzo_logo.png">
+<div class="row">
+<button id="read-menu"class="btn btn-info read" data-toggle="modal" data-target="menu-modal">Read menu</button>
+</div>
+<div class="modal fade" id="menu-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Our Pizzaria menu</h4>
+      </div>
+      <div class="modal-body" id="menu-modal-body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+ Pizza's name <input type="text" id="name-box">   
+ Pizza's cost <input type="number" id="cost-box">   
+ Pizza's time to be prepared <input type="number" id="time-box">   
+ Pizza's image url <input type="text" id="url-box">   
+ <button class="btn btn-info" id="add-pizza">Add another pizza to the menu</button>
+ </div>
+</body>
+	<script type="text/x-handlebars-template" id="pizza-modal-line">
+	    <div class="row" id="{{id}}-row" data-id="{{id}}">
+        	<img class="pizza-img" src="{{url}}">
+        	{{name}} - {{cost}} $ - {{time-to-prepare}}
+        	<button class="btn btn-success order">Order pizza</button>
+        </div>
+    </script>
+    <script type="text/x-handlebars-template" id="enter-address">
+    <div class="address-asker">
+    Please enter your adress: <input type="text" class="address-box">
+    <button class="btn btn-warning submit">Submit adress</button>
+    </div>
+    </script>
+    <script type="text/x-handlebars-template" id="order-button">
+    	<button class="btn btn-success order">Order pizza</button>
+    </script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src='bower_components/handlebars/handlebars.min.js'></script>
+    <script src="app.js"></script>
+</body>
+</html>
