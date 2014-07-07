@@ -1,20 +1,19 @@
 'use strict';
 
 var beerAndFries = function(menu) {
-  var
+  var beerScores = [];
+  var friesScores = [];
   menu.forEach (function(item) {
     if (item.type === 'beer') {
-      beer_scores.push(item.score);
+      beerScores.push(item.score);
     } else {
-     fries_scores.push(item.score);
+     friesScores.push(item.score);
     }
   });
-  console.log(beer_scores);
-  console.log(fries_scores);
-  beer_scores = beer_scores.sort(sortArray);
-  fries_scores = fries_scores.sort(sortArray);
+  beerScores = beerScores.sort(sortArray);
+  friesScores = friesScores.sort(sortArray);
   var couples = [];
-  couples = zip([beer_scores, fries_scores]);
+  couples = zip([beerScores, friesScores]);
   return couples.reduce(function(a, b) {
     return a + b[0] * b[1];
   }, 0);
