@@ -3,6 +3,7 @@ $(document).ready(function() {
 
   var studentsDb = [];
   var $elementToChange;
+
   var generateCourseParagraph = function(course) {
     var courseParagraphSource = $("#course-paragraph-template").html();
     var courseParagraphTemplate = Handlebars.compile(courseParagraphSource);
@@ -49,7 +50,7 @@ $(document).ready(function() {
   };
 
   var getDataBase = function(student) {
-    $.getJSON('http://localhost:3030/students', function(students, textStatus) {
+    getStudents(function(students, textStatus) {
       studentsDb = students;
       if (student === undefined){
         $('#table-container').append(generateTable(students));
@@ -81,27 +82,60 @@ $(document).ready(function() {
   return allRows;
   };
 
-  getDataBase();
-  $("#create-btn").on("click", function(){
+  var updateDatabase = function(newData, callback) {
     $.ajax({
       url: "http://localhost:3030/student",
       type: "POST",
       contentType: "application/json",
       dataType: "json",
-      data: JSON.stringify(getData())
-    }).done(function(){
+      data: JSON.stringify(newData)
+    }).done(function(data){
+      callback(data);
+    });
+  };
+
+  var deleteStudent = function(fn, callback) {
+    $.ajax({
+      url: "http://localhost:3030/student/" + fn ,
+      type: "DELETE",
+      dataType: "json"
+    }).done(function(data){
+      callback(data);
+    });
+  };
+
+  var getStudents = function(callback, fn) {
+    if (fn !== undefined){
+      $.ajax({
+        url: "http://localhost:3030/student/" + fn,
+        type: "GET",
+        contentType: "application/json"
+      }).done(function(data){
+        callback(data);
+      });
+    } else {
+      $.ajax({
+        url: "http://localhost:3030/students",
+        type: "GET",
+        contentType: "application/json"
+      }).done(function(data, textStatus){
+          callback(data, textStatus);
+      });
+    }
+  };
+  getDataBase();
+
+  $("#create-btn").on("click", function(){
+    updateDatabase(getData(), function(){
       $("#table-container").empty();
       getDataBase();
     });
   });
+
   $(document).on("click", ".update-btn", function(){
     var fn = $(this).parent().parent().attr("id");
     $elementToChange = $(this).parent().parent();
-    $.ajax({
-      url: "http://localhost:3030/student/" + fn,
-      type: "GET",
-      contentType: "application/json"
-    }).done(function(data) {
+    getStudents(function(data){
       var student = data;
       var courses = [];
       student.courses.forEach(function(course) {
@@ -113,36 +147,24 @@ $(document).ready(function() {
       $elementToChange.children('.name').children(".update-name-box").val(student.name);
       $elementToChange.children('.courses').children(".update-courses-box").val(courses);
       $("#" + student.facultyNumber).append(generateOkButton());
-    });
+    }, fn);
   });
+
   $(document).on("click", ".ok", function(){
     var fn = $(this).parent().parent().attr("id");
-    $.ajax({
-      url: "http://localhost:3030/student",
-      type: "POST",
-      contentType: "application/json",
-      dataType: "json",
-      data: JSON.stringify(getUpdateData(fn))
-    }).done(function(data){
-      $.ajax({
-      url: "http://localhost:3030/student/" + fn,
-      type: "GET",
-      contentType: "application/json"
-    }).done(function(data){
-        var student = data
-        getDataBase(student)
-      });
+    updateDatabase(getUpdateData(fn), function(data){
+      getStudents(function(data){
+        var student = data;
+        getDataBase(student);
+      }, fn);
     });
   });
+
   $(document).on("click", ".delete-btn", function(){
     var fn = $(this).parent().parent().attr("id");
-    $.ajax({
-      url: "http://localhost:3030/student/" + fn ,
-      type: "DELETE",
-      dataType: "json"
-    }).done(function(data){
+    deleteStudent(fn, function(data) {
       $("#table-container").empty();
       getDataBase();
-    });
+    })
   });
 });
