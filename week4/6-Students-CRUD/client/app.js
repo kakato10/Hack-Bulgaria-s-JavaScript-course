@@ -134,6 +134,7 @@ $(document).ready(function() {
 
   $(document).on("click", ".update-btn", function(){
     var fn = $(this).parent().parent().attr("id");
+    $(this).parent().parent().children(".ok-column").remove();
     $elementToChange = $(this).parent().parent();
     getStudents(function(data){
       var student = data;
