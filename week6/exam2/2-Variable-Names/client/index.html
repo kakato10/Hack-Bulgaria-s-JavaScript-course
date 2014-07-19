@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Name client</title>
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container" id="name-container">
+	</div>
+	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+	<script	src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src='bower_components/handlebars/handlebars.min.js'></script>
+	<script type="text/x-handlebars-template" id="name-row">
+	<div class="row" id="{{nameId}}">
+		<input type="text"  value="{{name}}" class="name-input">
+		<button class="btn btn-primary update" disabled>Update name</button>
+	</div>
+	</script>
+</body>
+</html>
