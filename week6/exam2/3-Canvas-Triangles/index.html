@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<title>Triangles</title>
+		<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="./styles.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="col-lg-2"></div>
+		<div class="container col-lg-1">
+			<div class="row">
+				<button class="btn btn-success" id="save">Save to local storage</button>
+				<button class="btn btn-success" id="clearCanvas">Clear board</button>
+				<div class="btn-group">
+				  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+				    Load saved board <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" id="savesDropdown" role="menu">
+				  </ul>
+				</div>
+				<span>
+					  Select triangles color: <input type="color" name="favcolor" id="colorInput"><br>
+				</span>
+			</div>
+		</div>
+		<div align="center" class="col-lg-4">
+			<canvas id="canvas" width="400" height="400"></canvas>
+		</div>
+		<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+		<script type="text/javascript" src="./app.js"></script>
+		<script	src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src='bower_components/handlebars/handlebars.min.js'></script>
+		<script type="text/x-handlebars-template" id="savedBoard">
+			<li class="save" role="presentation" data-index="{{index}}"><a role="menuitem" tabindex="-1" href="#">{{name}}</a></li>
+		</script>
+	</body>
+
+</html>
+
+
+
