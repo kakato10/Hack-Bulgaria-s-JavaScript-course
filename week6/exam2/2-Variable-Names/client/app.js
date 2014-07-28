@@ -1,8 +1,11 @@
 $(document).ready(function(){
-  var namesDb = {};
+  var namesDb = {},
+      server = "http://localhost:8080",
+      $nameContainer = $("#name-container");
+
   var getDataBase = function(callback){
     $.ajax({
-      url: "http://localhost:8080/names",
+      url: server + "/names",
       type: "GET",
       contentType: "application/json",
     }).done(function(data){
@@ -12,7 +15,7 @@ $(document).ready(function(){
 
   var updateDatabase = function(newName, callback) {
     $.ajax({
-      url: "http://localhost:8080/name",
+      url: server + "/name",
       type: "POST",
       contentType: "application/json",
       dataType: "json",
@@ -30,8 +33,9 @@ $(document).ready(function(){
   };
 
   var generateNameHtml = function(name){
-    var nameRowHtml = $("#name-row").html();
-    var nameRowSource = Handlebars.compile(nameRowHtml);
+    var
+      nameRowHtml = $("#name-row").html(),
+      nameRowSource = Handlebars.compile(nameRowHtml);
     return nameRowSource(name);
   }
 
@@ -40,7 +44,7 @@ $(document).ready(function(){
     data.forEach(function(name){
       allNames = allNames + generateNameHtml(name);
     });
-    $("#name-container").append(allNames);
+    $nameContainer.append(allNames);
   };
 
   $(document).on("input",".name-input",function(){
@@ -48,13 +52,14 @@ $(document).ready(function(){
   });
 
   $(document).on("click", ".update", function(){
-    var newName = $(this).parent().children(".name-input").val();
-    var id = $(this).parent().attr("id");
+    var
+      newName = $(this).parent().children(".name-input").val(),
+      id = $(this).parent().attr("id");
     updateDatabase({
       nameId : id,
       name : newName
     }, function(data){
-      $("#name-container").empty();
+      $nameContainer.empty();
       getDataBase(loadDatabase);
     });
   });
