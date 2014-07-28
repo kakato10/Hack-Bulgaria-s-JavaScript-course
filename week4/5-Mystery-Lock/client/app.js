@@ -5,7 +5,6 @@ $(document).ready(function() {
 
   var concatenatedSecrets = "",
       CORRECT_STATUS = "CORRECT";
-  var $calledBtn;
   function initButtons(cb) {
     $.ajax({
       url: "http://localhost:3000/init",
@@ -91,7 +90,7 @@ $(document).ready(function() {
     });
   });
   $(document).on("click", ".secret-button", function() {
-    $calledBtn = $(this);
+    var $calledBtn = $(this);
     var label = $(this).data("token");
     var index = $(this).data("index");
     console.log("http://localhost:3000/secret/" + label);
