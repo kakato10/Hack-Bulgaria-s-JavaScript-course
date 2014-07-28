@@ -72,7 +72,8 @@ $(document).ready(function(){
       y = event.y;
 /*понеже ползвам col-lg в html-a не видях как точно да намери стойността която трябва да
 извадя от x без магически числа*/
-    x = x - 600;
+    x = x - canvas.offsetLeft;
+    console.log(canvas.offsetLeft);
     y = y - canvas.offsetTop;
     points.push({
       x: x,
@@ -86,6 +87,7 @@ $(document).ready(function(){
   };
 
   function loadSave(saveIndex){
+    context.clearRect(0, 0, canvasHeight, canvasWidth);
     var savedTriangles = saves[saveIndex].triangles;
     savedTriangles.forEach(function(triangle){
       triangles.push(new Triangle(triangle.firstPoint, triangle.secondPoint, triangle.thirdPoint, triangle.color));
@@ -119,5 +121,6 @@ $(document).ready(function(){
   $(document).on("click", ".save", function(){
     loadSave($(this).data("index"));
   });
+
   canvas.addEventListener("mousedown", getPosition, false);
 });
