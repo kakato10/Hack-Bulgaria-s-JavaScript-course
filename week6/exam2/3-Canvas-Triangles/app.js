@@ -72,7 +72,7 @@ $(document).ready(function(){
       y = event.y;
 /*понеже ползвам col-lg в html-a не видях как точно да намери стойността която трябва да
 извадя от x без магически числа*/
-    x = x - canvas.offsetLeft;
+    x = x - 600;
     console.log(canvas.offsetLeft);
     y = y - canvas.offsetTop;
     points.push({
