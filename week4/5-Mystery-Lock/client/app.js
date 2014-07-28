@@ -90,10 +90,11 @@ $(document).ready(function() {
     });
   });
   $(document).on("click", ".secret-button", function() {
-    var $calledBtn = $(this);
-    var label = $(this).data("token");
-    var index = $(this).data("index");
-    console.log("http://localhost:3000/secret/" + label);
+    var
+      $calledBtn = $(this),
+      label = $(this).data("token"),
+      index = $(this).data("index"),
+      nextBtnId;
     $.ajax({
       url: "http://localhost:3000/secret/" + label,
       type: "GET",
@@ -101,7 +102,7 @@ $(document).ready(function() {
     }).done(function(data){
       concatenatedSecrets = concatenatedSecrets + data.secret;
       $calledBtn.addClass("disabled");
-      var nextBtnId = parseInt($calledBtn.attr("data-index"), 10) + 1;
+      nextBtnId = parseInt($calledBtn.attr("data-index"), 10) + 1;
       console.log(nextBtnId);
       enableButton(nextBtnId);
     });
