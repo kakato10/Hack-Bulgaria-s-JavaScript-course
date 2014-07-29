@@ -1,0 +1,20 @@
+{
+  "name": "Drag'n'Drop upload",
+  "version": "0.0.0",
+  "authors": [
+    "kakato10 <svetimir.ignatov@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.2.0",
+    "q": "1.0.1",
+    "requirejs": "~2.1.14"
+  }
+}
