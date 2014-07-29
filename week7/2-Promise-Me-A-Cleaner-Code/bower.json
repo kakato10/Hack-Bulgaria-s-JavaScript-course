@@ -1,0 +1,19 @@
+{
+  "name": "2-Promise-Me-A-Cleaner-Code",
+  "version": "0.0.0",
+  "authors": [
+    "kakato10 <svetimir.ignatov@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "q": "1.0.1",
+    "requirejs": "~2.1.14"
+  }
+}
