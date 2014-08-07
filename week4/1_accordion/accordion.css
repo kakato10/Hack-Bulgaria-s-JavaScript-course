@@ -24,6 +24,10 @@
   top: -1px;
 }
 
-dd {
-  visible:false;
+.hidden-content {
+  display:none;
+}
+
+.active-content {
+  background-color: #A3E661;
 }
