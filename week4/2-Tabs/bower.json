@@ -1,0 +1,18 @@
+{
+  "name": "2-Tabs",
+  "version": "0.0.0",
+  "authors": [
+    "kakato10 <svetimir.ignatov@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}
