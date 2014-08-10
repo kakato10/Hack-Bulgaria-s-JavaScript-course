@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hack-Students System</title>
+    <link href='bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='styles.css' rel='stylesheet'>
+</head>
+<body>
+    <div id="btn-container" class="col-lg-2"> 
+        <button class='btn btn-warning course' id="first-btn">Frontend JavaScript 1</button></br>
+        <button class='btn btn-warning course'>Frontend JavaScript 2</button></br>
+        <button class='btn btn-primary course'>Core Java 1</button></br>
+        <button class='btn btn-primary course'>Core Java 2</button></br>
+        <button class='btn btn-success course'>Angular JS 2</button></br>
+    </div>
+    <div id='start-here' class='container'>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Courses</th>
+                        <th>GitHub</th>
+                        <th>Available</th>
+                    </tr>
+                </thead>
+                <tbody id="table-container">
+                </tbody>
+            </table>
+        </div>
+
+        <div class='row'>
+            <div class='col-xs-4'>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="groups-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">List of groups</h4>
+          </div>
+          <div class="modal-body" id="groups-modal-content">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+</div>
+
+<script id="table-template" type="text/x-handlebars-template">
+        <tr id="{{id}}">
+            <td>{{id}}</td>
+            <td>{{name}}</td>
+            <td>{{{courses}}}</td>
+            <td>{{github}}</td>
+            <td><button type="button" class="btn available btn-{{here}}">{{availability}}</button></td>
+        </tr>
+</script>
+<script type="text/x-handlebars-template" id="group-header">
+    <h3>Group {{id}}:</h3>
+</script>
+<script type="text/x-handlebars-template" id="member-row">
+    <p>{{name}}</p>
+</script>
+<script type="text/x-handlebars-template" id="group-input-template">
+    <div class="row">
+        <input id='group-box' type="number">
+        <button id='group-btn' class='btn btn-primary '>Group member count</button>
+    </div>
+</script>
+<script src='bower_components/jquery/dist/jquery.js'></script>
+<script src='bower_components/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='bower_components/lodash/dist/lodash.min.js'></script>
+<script src='bower_components/handlebars/handlebars.min.js'></script>
+<script type='text/javascript' src='app.js'></script>
+</body>
+</html>

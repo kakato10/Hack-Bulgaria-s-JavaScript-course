@@ -1,0 +1,28 @@
+{
+  "name": "Group Students",
+  "version": "0.0.0",
+  "homepage": "https://github.com/kakato10/group_students",
+  "authors": [
+    "kakato10 <svetimir.ignatov@gmail.com>"
+  ],
+  "description": "A grouping students app for Hack Bulgaria's JavaScript course",
+  "main": "app.index.html",
+  "keywords": [
+    "group",
+    "students",
+    "app"
+  ],
+  "license": "Open Source",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "lodash": "~2.4.1",
+    "handlebars": "~1.3.0"
+  }
+}
