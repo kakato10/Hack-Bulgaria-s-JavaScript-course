@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+		Game loby
+	</title>
+</head>
+<body>
+	<div id="userField">
+	</div>
+	<script data-main="scripts/app" src="bower_components/requirejs/require.js"></script>
+	<script type="text/x-handlebars-template" id="userFieldTemplate">
+		<div id="inputs">
+			<input type="text" id="usernameInput">
+			<button class="btn btn-primary save">Save</button>
+			<button class="btn btn-primary host">HostGame</button>
+		</div>
+	</script>
+	<script type="text/x-handlebars-template" id="greetings">
+		<div>Hello {{username}} </div>
+	</script>
+</body>
+</html>
